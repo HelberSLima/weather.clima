@@ -1,2 +1,1 @@
-# wheather
 # weather.clima
