@@ -1,42 +1,101 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clima</title>
+    <title>Previsão do Tempo</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>Clima</h1>
+    <div class="container">
+        <h1><i class="fa-solid fa-cloud-sun"></i> Clima & Tempo</h1>
 
-    <form class="busca">
-        <input type="search" id="searchInput" />
-        <button>Buscar</button>
-    </form>
+        <form class="busca">
+            <input type="search" id="searchInput" placeholder="Digite o nome da cidade..." autocomplete="off" />
+            <button type="submit" title="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button type="button" id="geoBtn" title="Usar minha localização"><i class="fa-solid fa-location-crosshairs"></i></button>
+        </form>
 
-    <div class="resultado">
-        <div class="titulo">--</div>
+        <div class="quick-cities">
+            <button class="city-tag" data-city="São Paulo">São Paulo</button>
+            <button class="city-tag" data-city="Rio de Janeiro">Rio de Janeiro</button>
+            <button class="city-tag" data-city="Londres">Londres</button>
+            <button class="city-tag" data-city="Tóquio">Tóquio</button>
+        </div>
 
-        <div class="info">
-            <div class="temp">
-                <div class="tempTitulo">Temperatura</div>
-                <div class="tempInfo">-- <sup>ºC</sup></div>
-                <img src="http://openweathermap.org/img/wn/10d@2x.png" />
+        <div class="resultado">
+            <div class="titulo">--</div>
+            <div class="descricao-clima">--</div>
+
+            <div class="info">
+                <div class="temp card-metric">
+                    <div class="tempTitulo"><i class="fa-solid fa-temperature-half"></i> Temperatura Atual</div>
+                    <div class="tempInfo">-- <sup>ºC</sup></div>
+                    <div class="temp-sensacao">Sensação: -- ºC</div>
+                    <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="Ícone do clima" />
+                </div>
             </div>
-            <div class="vento">
-                <div class="ventoTitulo">Vento</div>
-                <div class="ventoInfo">-- <span>km/h</span></div>
-                <div class="ventoArea">
-                    <div class="ventoPonto" style="transform: rotate(0deg)"></div>
+
+            <div class="detalhes-grid">
+                <div class="detalhe-item">
+                    <i class="fa-solid fa-wind"></i>
+                    <div>
+                        <span class="detalhe-titulo">Vento</span>
+                        <span class="ventoInfo">-- km/h</span>
+                    </div>
+                    <div class="ventoArea" title="Direção do vento">
+                        <div class="ventoPonto" style="transform: rotate(0deg)"></div>
+                    </div>
+                </div>
+
+                <div class="detalhe-item">
+                    <i class="fa-solid fa-droplet"></i>
+                    <div>
+                        <span class="detalhe-titulo">Umidade</span>
+                        <span class="umidadeInfo">--%</span>
+                    </div>
+                </div>
+
+                <div class="detalhe-item">
+                    <i class="fa-solid fa-gauge"></i>
+                    <div>
+                        <span class="detalhe-titulo">Pressão</span>
+                        <span class="pressaoInfo">-- hPa</span>
+                    </div>
+                </div>
+
+                <div class="detalhe-item">
+                    <i class="fa-solid fa-eye"></i>
+                    <div>
+                        <span class="detalhe-titulo">Visibilidade</span>
+                        <span class="visibilidadeInfo">-- km</span>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Seção Hora a Hora -->
+        <div class="hourly-container">
+            <h3><i class="fa-solid fa-clock"></i> Variação Hora a Hora (3h em 3h)</h3>
+            <div class="hourly-scroll" id="hourlyScroll">
+                <!-- Preenchido via JS -->
+            </div>
+        </div>
+
+        <!-- Seção Próximos Dias -->
+        <div class="forecast-container">
+            <h3><i class="fa-solid fa-calendar-days"></i> Previsão para os Próximos Dias</h3>
+            <div class="forecast-list" id="forecastList">
+                <!-- Preenchido via JS -->
+            </div>
+        </div>
+
+        <div class="aviso"></div>
+
+        <footer>Criado por Helber Lima • Previsão Avançada</footer>
     </div>
-
-    <div class="aviso"></div>
-
-    <footer>Criado por Helber Lima</footer>
 
     <script src="script.js"></script>
 </body>

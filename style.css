@@ -9,116 +9,378 @@ body {
     min-height: 100vh;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    padding: 30px 20px;
+}
+
+.container {
+    display: flex;
     flex-direction: column;
-    background-color: #333;
-    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
 }
 
 h1 {
     color: #FFF;
-    margin: 20px 0;
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+h1 i {
+    color: #4facfe;
+    margin-right: 8px;
 }
 
 .busca {
     display: flex;
-    width: 300px;
-}
-.busca #searchInput {
-    flex: 1;
-    padding: 10px;
-    outline: none;
-    font-size: 15px;
-    border-radius: 5px;
-    border: 0;
-}
-.busca button {
-    padding: 10px;
-    font-size: 15px;
-    border: 0;
-    background-color: #555;
-    color: #FFF;
-    border-radius: 5px;
-    margin-left: 10px;
-    cursor: pointer;
-}
-.busca button:hover {
-    background-color: #444;
+    width: 100%;
+    gap: 8px;
+    margin-bottom: 12px;
 }
 
-.resultado {
-    width: 300px;
+.busca #searchInput {
+    flex: 1;
+    padding: 12px 16px;
+    outline: none;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.busca #searchInput:focus {
+    background: #fff;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.busca button {
+    padding: 12px 16px;
+    font-size: 16px;
+    border: none;
+    background: #4facfe;
+    color: #FFF;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.busca button:hover {
+    background: #00f2fe;
+    transform: translateY(-1px);
+}
+
+#geoBtn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+#geoBtn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.quick-cities {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.city-tag {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.city-tag:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.resultado, .hourly-container, .forecast-container {
+    width: 100%;
     display: none;
-    border: 1px dotted #FFF;
-    margin-top: 20px;
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 31, 63, 0.37);
+    padding: 20px;
+    margin-bottom: 16px;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .titulo {
     width: 100%;
     color: #FFF;
-    font-size: 25px;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
-    padding: 20px;
+}
+
+.descricao-clima {
+    text-align: center;
+    color: #d0e1fd;
+    font-size: 15px;
+    text-transform: capitalize;
+    margin-bottom: 16px;
+    margin-top: 4px;
 }
 
 .info {
     display: flex;
+    justify-content: center;
     width: 100%;
+    margin-bottom: 16px;
 }
-.info .temp {
-    flex: 1;
+
+.card-metric {
     text-align: center;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 16px;
+    border-radius: 16px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.info .vento {
-    flex: 1;
-    text-align: center;
+
+.tempTitulo {
+    color: #b0c4de;
+    font-size: 15px;
+    margin-bottom: 8px;
 }
-.tempTitulo,
-.ventoTitulo {
-    color: #777;
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-.tempInfo,
-.ventoInfo {
+
+.tempInfo {
     color: #FFF;
-    font-size: 30px;
+    font-size: 42px;
     font-weight: bold;
 }
+
 .tempInfo sup {
-    font-size: 15px;
+    font-size: 20px;
     font-weight: normal;
 }
-.ventoInfo span {
-    font-size: 15px;
-    font-weight: normal;
+
+.temp-sensacao {
+    font-size: 13px;
+    color: #d0e1fd;
+    margin-top: 4px;
 }
+
+.card-metric img {
+    width: 70px;
+    height: 70px;
+    margin-top: -10px;
+}
+
+.detalhes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+}
+
+.detalhe-item {
+    background: rgba(0, 0, 0, 0.15);
+    padding: 12px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detalhe-item > i {
+    font-size: 20px;
+    color: #4facfe;
+    width: 24px;
+    text-align: center;
+}
+
+.detalhe-titulo {
+    display: block;
+    color: #b0c4de;
+    font-size: 12px;
+}
+
+.detalhe-item span:not(.detalhe-titulo) {
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+}
+
 .ventoArea {
-    width: 50px;
-    height: 50px;
-    border: 1px solid #FFF;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    margin: auto;
-    margin-top: 20px;
-    padding-left: 25px;
-    padding-top: 25px;
+    margin-left: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .ventoPonto {
-    width: 15px;
-    height: 1px;
-    background-color: #FFF;
-    transform-origin: left;
+    width: 12px;
+    height: 2px;
+    background-color: #4facfe;
+    transform-origin: left center;
+    position: absolute;
+    left: 17px;
+}
+
+/* Hourly & Forecast Styles */
+.hourly-container h3, .forecast-container h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hourly-container h3 i, .forecast-container h3 i {
+    color: #4facfe;
+}
+
+.hourly-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.hourly-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.hourly-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.hourly-item {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px 8px;
+    min-width: 75px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.hourly-time {
+    font-size: 12px;
+    color: #b0c4de;
+}
+
+.hourly-item img {
+    width: 36px;
+    height: 36px;
+}
+
+.hourly-temp {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.forecast-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.forecast-item {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.forecast-day {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    width: 90px;
+}
+
+.forecast-weather {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.forecast-weather img {
+    width: 32px;
+    height: 32px;
+}
+
+.forecast-desc {
+    font-size: 13px;
+    color: #d0e1fd;
+    text-transform: capitalize;
+}
+
+.forecast-temps {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    gap: 8px;
+}
+
+.forecast-temp-min {
+    color: #b0c4de;
+    font-weight: normal;
 }
 
 .aviso {
-    color: #FFF;
-    padding-top: 20px;
+    color: #ffcccc;
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-size: 14px;
+    display: none;
 }
 
 footer {
-    margin-top: 20px;
-    color: #FFF;
-    font-size: 13px;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    text-align: center;
 }
